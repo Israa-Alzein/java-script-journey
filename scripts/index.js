@@ -155,3 +155,47 @@ acc1.getSummary();
 acc2.getSummary(); 
 
 acc1.printHistory();
+
+
+
+
+// Question 3: Build a simple dynamic to-do list (refer to the shared code on slack for the this question)Assume you have:
+// A text input
+// A button labeled “Add Task”
+// An empty list 
+
+// Requirements:
+// When the button is clicked:
+// Read the input value
+// Add it as a new <li> element to the list
+// Clear the input
+// Bonus
+// When an <li> is clicked, it should be 
+
+
+const addButton = document.querySelector('.add-btn')
+
+
+addButton.addEventListener('click', () => {
+
+    const taskInput = document.querySelector('.task-input');
+
+    if(taskInput != ''){
+
+        //create element li and set its content same to textfield
+        const li = document.createElement('li');
+        li.textContent = taskInput.value;
+    
+        //put element li inside of element ul
+        const taskList = document.querySelector('.task-list');
+        taskList.appendChild(li); 
+        taskInput.value = '';
+    
+        //add toggle to change between striking line on the li and removing it
+        li.addEventListener('click', () => {
+            li.classList.toggle('done');
+        });
+
+    }
+
+});

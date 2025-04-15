@@ -71,3 +71,8 @@ h1 {
 .task-list li:hover {
     background: #e0e0e0;
 }
+
+.done {
+    text-decoration: line-through;
+    /* color: gray; */
+}
