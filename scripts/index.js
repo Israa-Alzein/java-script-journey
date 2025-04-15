@@ -20,52 +20,55 @@ function generateReports(students){
     
     let studentsReport = [];
 
-    for(let i=0; i<students.length; i++){
+    for(let i=0; i<students.length; i++){                    //time complexity: O(n)
 
-        let student =students[i];
+        let student =students[i];                           //time complexity: O(1)
 
-        let sum = 0;
+        let sum = 0;                                       //time complexity: O(1)
 
-        for(let j = 0; j <student.scores.length; j++){
-            sum += student.scores[j]
+        for(let j = 0; j <student.scores.length; j++){    // time complexity: O(m)
+
+            sum += student.scores[j]                      //time complexity: O(1)
         }
 
-        let average = sum / student.scores.length;
+        let average = sum / student.scores.length;       //time complexity: O(1)
 
         let g;
 
-        if(average >= 90){
-            g = "A";
+        if(average >= 90){                              //time complexity: O(1)
+            g = "A";                                    //time complexity: O(1)
         }
-        else if(average >= 80){
-            g = "B";
+        else if(average >= 80){                         //time complexity: O(1)
+            g = "B";                                    //time complexity: O(1)
         }
-        else if(average >= 70){
-            g = "C";
+        else if(average >= 70){                         //time complexity: O(1)
+            g = "C";                                    //time complexity: O(1)
         }
-        else if(average >= 60){
-            g = "D";
+        else if(average >= 60){                         //time complexity: O(1)
+            g = "D";                                    //time complexity: O(1)
         }
-        else{
-            g = "F";
+        else{                                           //time complexity: O(1)
+            g = "F";                                    //time complexity: O(1)
         }
 
 
-        let report = {
+        let report = {                                  //time complexity: O(1)
             name: student.name,
             average: average,
             grade: g
         };
 
-        studentsReport.push(report)
+        studentsReport.push(report)                    //time complexity: O(1)
 
         }
     
-    return studentsReport;
+    return studentsReport;                            //time complexity: O(1)
 }
 
-console.log(generateReports(students));
+console.log(generateReports(students));              //time complexity: O(1)
 
+
+//The total time complexity for q1 is O(n * m)  since it is double loop 
 
 
 
@@ -92,54 +95,54 @@ console.log(generateReports(students));
 
 class BankAccount{
     constructor(ownerName, initialBalance){
-        this.ownerName = ownerName;
-        this.balance = initialBalance;
-        this.history=[];
-        this.history.push(`Created account with $${initialBalance}`);
+        this.ownerName = ownerName;                                             //time complexity: O(1)                      
+        this.balance = initialBalance;                                          //time complexity: O(1)
+        this.history=[];                                                        //time complexity: O(1)
+        this.history.push(`Created account with $${initialBalance}`);           //time complexity: O(1)
     }
 
     deposit(amount){
-        if(amount <0){
-            console.log("the amount should be positive")
-            this.history.push(`Failed deposit: invalid amount $${amount}`);
+        if(amount <0){                                                          //time complexity: O(1)
+            console.log("the amount should be positive");                       //time complexity: O(1)
+            this.history.push(`Failed deposit: invalid amount $${amount}`);     //time complexity: O(1)
         }
-        else{
-            this.balance += amount;
-            this.history.push(`Deposited $${amount}`);
+        else{                                                                   //time complexity: O(1)
+            this.balance += amount;                                             //time complexity: O(1)
+            this.history.push(`Deposited $${amount}`);                          //time complexity: O(1)
         }
     }
 
     withdraw(amount){
-        if(this.balance < amount || amount < 0){
-            console.log("The amount you want to pay is either larger than your balance or is negative value");
-            this.history.push(`Failed withdraw: invalid amount $${amount}`);
+        if(this.balance < amount || amount < 0){                               //time complexity: O(1)
+            console.log("The amount you want to pay is either larger than your balance or is negative value"); //time complexity: O(1)
+            this.history.push(`Failed withdraw: invalid amount $${amount}`);    //time complexity: O(1)
         }
-        else{
-            this.balance -= amount;
-            this.history.push(`Withdrew $${amount}`);
+        else{                                                                   //time complexity: O(1)
+            this.balance -= amount;                                             //time complexity: O(1)
+            this.history.push(`Withdrew $${amount}`);                           //time complexity: O(1)
         }
     }
 
     transferTo(anotherAccount, amount){
-        if(this.balance < amount || amount < 0){
-            console.log("The amount you want to transfer is either larger than your balance or is negative value");
-            this.history.push(`Failed transfer: invalid amount $${amount}`);
+        if(this.balance < amount || amount < 0){                                //time complexity: O(1)
+            console.log("The amount you want to transfer is either larger than your balance or is negative value"); //time complexity: O(1)
+            this.history.push(`Failed transfer: invalid amount $${amount}`);    //time complexity: O(1)
         }
-        else{
-            this.balance -= amount;
-            anotherAccount.balance += amount;
-            this.history.push(`Transfered $${amount} to ${anotherAccount.ownerName}`);
+        else{                                                                   //time complexity: O(1)
+            this.balance -= amount;                                             //time complexity: O(1)
+            anotherAccount.balance += amount;                                   //time complexity: O(1)
+            this.history.push(`Transfered $${amount} to ${anotherAccount.ownerName}`);  //time complexity: O(1)
         }
     }
 
     getSummary(){
-        console.log(`${this.ownerName}'s balance is ${this.balance} `);
+        console.log(`${this.ownerName}'s balance is ${this.balance} `);         //time complexity: O(1)
     }
 
     printHistory() {
-        console.log(`${this.ownerName}'s Transaction History:`);
-        this.history.forEach((event) => {
-        console.log(`- ${event}`);
+        console.log(`${this.ownerName}'s Transaction History:`);               //time complexity: O(1)
+        this.history.forEach((event) => {                                      //time complexity: O(n)
+        console.log(`- ${event}`);                                             //time complexity: O(1)
         });
     }
 }
@@ -155,6 +158,9 @@ acc1.getSummary();
 acc2.getSummary(); 
 
 acc1.printHistory();
+
+
+// total time complexity for question 2 depends on each class used all classes have O(1) except class printHistory() has O(n) since it contains loop on all history statements
 
 
 
