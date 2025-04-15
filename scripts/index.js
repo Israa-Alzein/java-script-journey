@@ -73,7 +73,7 @@ console.log(generateReports(students));
 // constructor(ownerName, initialBalance)
 // deposit(amount)
 // withdraw(amount)
-// transferTo(anotherAccount, amount) → transfers if enough balance
+// ransferTo(anotherAccount, amount) → transfers if enough balance
 // getSummary() → returns:
 // "John's balance is $400"
 
@@ -90,3 +90,68 @@ console.log(generateReports(students));
 // acc1.printHistory();
 
 
+class BankAccount{
+    constructor(ownerName, initialBalance){
+        this.ownerName = ownerName;
+        this.balance = initialBalance;
+        this.history=[];
+        this.history.push(`Created account with $${initialBalance}`);
+    }
+
+    deposit(amount){
+        if(amount <0){
+            console.log("the amount should be positive")
+            this.history.push(`Failed deposit: invalid amount $${amount}`);
+        }
+        else{
+            this.balance += amount;
+            this.history.push(`Deposited $${amount}`);
+        }
+    }
+
+    withdraw(amount){
+        if(this.balance < amount || amount < 0){
+            console.log("The amount you want to pay is either larger than your balance or is negative value");
+            this.history.push(`Failed withdraw: invalid amount $${amount}`);
+        }
+        else{
+            this.balance -= amount;
+            this.history.push(`Withdrew $${amount}`);
+        }
+    }
+
+    transferTo(anotherAccount, amount){
+        if(this.balance < amount || amount < 0){
+            console.log("The amount you want to transfer is either larger than your balance or is negative value");
+            this.history.push(`Failed transfer: invalid amount $${amount}`);
+        }
+        else{
+            this.balance -= amount;
+            anotherAccount.balance += amount;
+            this.history.push(`Transfered $${amount} to ${anotherAccount.ownerName}`);
+        }
+    }
+
+    getSummary(){
+        console.log(`${this.ownerName}'s balance is ${this.balance} `);
+    }
+
+    printHistory() {
+        console.log(`${this.ownerName}'s Transaction History:`);
+        this.history.forEach((event) => {
+        console.log(`- ${event}`);
+        });
+    }
+}
+
+const acc1 = new BankAccount("John", 500);
+const acc2 = new BankAccount("Sara", 300);
+
+acc1.deposit(200);
+acc1.withdraw(100);
+acc1.transferTo(acc2, 250);
+
+acc1.getSummary(); 
+acc2.getSummary(); 
+
+acc1.printHistory();
